@@ -12,7 +12,14 @@ export default class Time extends EventEmitter{
     this.delta = 16
     this.experience = new Experience()
     this.camera = this.experience.camera
+    this.raycaster = this.experience.raycaster.raycaster
+    this.mouse = this.experience.raycaster.mouse
     this.resources = this.experience.resources
+
+    this.resources.on('ready', ()=> {
+      this.headphone = this.experience.world.headphone.model.children[0]
+      this.button = this.experience.world.button.model
+    })
 
     window.requestAnimationFrame(() => {
         this.tick()

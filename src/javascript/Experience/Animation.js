@@ -6,6 +6,6 @@ import Experience from "./Experience";
 export default class Animation extends EventEmitter{
   constructor(){
     super()
-
   }
+
 }
