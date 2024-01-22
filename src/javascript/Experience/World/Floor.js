@@ -24,7 +24,7 @@ export default class Floor
     {
         this.textures = {}
 
-        this.textures.color = new THREE.Color("#413E40")
+        this.textures.color = new THREE.Color("#FF0000")
         this.textures.color.colorSpace = THREE.SRGBColorSpace
         this.textures.roughness = 0.5
     }
@@ -38,6 +38,7 @@ export default class Floor
 
     setMesh()
     {
+        console.log('Mesh Floor');
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.mesh.rotation.x = - Math.PI * 0.5
         this.mesh.receiveShadow = true
