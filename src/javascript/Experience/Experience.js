@@ -31,7 +31,6 @@ export default class Experience{
     this.camera = new Camera()
     this.renderer = new Renderer()
     this.world = new World()
-    this.raycaster = new Raycaster()
     this.time = new Time()
     this.animation= new Animation()
 
