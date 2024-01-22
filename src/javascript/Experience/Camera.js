@@ -17,12 +17,12 @@ export default class Camera extends EventEmitter{
 
   setInstance(){
     this.instance = new THREE.PerspectiveCamera(
-      35,
+      75,
       this.sizes.width / this.sizes.height,
       0.1,
       100
     )
-    this.instance.position.set(9.5, 8, 6)
+    this.instance.position.set(0, 0, 24)
     this.scene.add(this.instance)
   }
 

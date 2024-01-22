@@ -1,6 +1,7 @@
+import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
-import Floor from './Floor.js'
+import Slide from './Slide.js'
 
 export default class World
 {
@@ -13,8 +14,9 @@ export default class World
 
         this.resources.on('ready', ()=> {
           // Setup
-          this.floor = new Floor()
-          console.log(this.floor);
+          this.slide1 = new Slide(this.resources.items.slide1Texture,16)
+          this.slide2 = new Slide(this.resources.items.slide2Texture, 8)
+          this.slide3 = new Slide(this.resources.items.slide3Texture, 0)
           this.environment = new Environment()
         })
     }

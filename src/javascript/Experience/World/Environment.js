@@ -9,8 +9,15 @@ export default class Environment
         this.scene = this.experience.scene
         this.ressources = this.experience.resources
 
+        // this.setFog()
         this.setAmbiantLight()
     }
+
+    setFog(){
+      this.fog = new THREE.Fog('#cccccc', 0, 6)
+      this.scene.fog = this.fog
+    }
+
     setAmbiantLight(){
       this.ambientLight = new THREE.AmbientLight('#ffffff', 1)
       this.scene.add(this.ambientLight)
