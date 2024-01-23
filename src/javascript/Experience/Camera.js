@@ -22,7 +22,7 @@ export default class Camera extends EventEmitter{
       0.1,
       100
     )
-    this.instance.position.set(0, 0, 24)
+    this.instance.position.set(0, 0, 52)
     this.scene.add(this.instance)
   }
 
