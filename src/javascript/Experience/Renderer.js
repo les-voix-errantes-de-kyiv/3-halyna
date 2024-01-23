@@ -14,13 +14,14 @@ export default class Renderer{
   setInstance(){
     this.instance = new THREE.WebGLRenderer({
         canvas: this.canvas,
-        antialias: true
+        antialias: true,
+        alpha: true
     })
     this.instance.toneMapping = THREE.CineonToneMapping
     this.instance.toneMappingExposure = 1.75
     this.instance.shadowMap.enabled = true
     this.instance.shadowMap.type = THREE.PCFSoftShadowMap
-    this.instance.setClearColor('#09111B')
+    // this.instance.setClearColor('#09111B')
     this.instance.setSize(this.sizes.width, this.sizes.height)
     this.instance.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   }

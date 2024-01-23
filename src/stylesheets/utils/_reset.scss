@@ -7,6 +7,15 @@
 html, body{
   position: relative;
   font-family: 'Ubuntu', sans-serif;
-  color: #09111B;
+  color: white;
 
+}
+html {
+  background: #1e1a20;
+}
+
+section {
+  height: 100vh;
+  position: relative;
+  z-index: 9;
 }

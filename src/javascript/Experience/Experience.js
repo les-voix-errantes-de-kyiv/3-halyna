@@ -33,8 +33,8 @@ export default class Experience{
     this.renderer = new Renderer()
     this.world = new World()
     this.time = new Time()
-    this.animation = new Animation()
     this.scroll = new Scroll()
+    this.animation = new Animation()
 
     // Sizes resize event
     this.sizes.on('resize', ()=>{
@@ -53,7 +53,7 @@ export default class Experience{
   }
 
   update(){
-    this.camera.update()
+    // this.camera.update()
     this.renderer.update()
   }
 }

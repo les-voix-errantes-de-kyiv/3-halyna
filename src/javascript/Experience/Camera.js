@@ -12,7 +12,7 @@ export default class Camera extends EventEmitter{
     this.canvas = this.experience.canvas
 
     this.setInstance()
-    this.setOrbitControls()
+    // this.setOrbitControls()
   }
 
   setInstance(){

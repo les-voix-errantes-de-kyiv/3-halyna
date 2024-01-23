@@ -3,17 +3,20 @@ import Experience from '../Experience.js'
 
 export default class Slide
 {
-    constructor(texture, posZ)
+    constructor(id, texture, posZ)
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.camera = this.experience.camera
+        this.sections = []
+        this.id = id
 
         this.setGeometry()
         this.setTextures(texture)
         this.setMaterial()
         this.setMesh(posZ)
+        this.getSection()
     }
 
     setGeometry()
@@ -45,5 +48,14 @@ export default class Slide
         this.mesh.lookAt(this.camera.instance.position)
         this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
+    }
+
+    getSection() {
+        const slideSections = document.querySelectorAll(`section[data-slide="${this.id}"]`)
+        
+        if (slideSections) {
+            this.sections.push(slideSections)
+            console.log(this.sections)
+        }
     }
 }
