@@ -8,9 +8,7 @@ import Resources from './Utils/Resources'
 import sources from './sources'
 import Animation from './Animation'
 import Scroll from './Utils/Scroll'
-import SectionObserver from './Utils/SectionObserver'
-import SlideObserver from './Utils/SlideObserver'
-
+import Observer from './Utils/Observer'
 
 let instance = null
 
@@ -36,8 +34,7 @@ export default class Experience{
     this.world = new World()
     this.time = new Time()
     this.scroll = new Scroll()
-    this.sectionObserver = new SectionObserver()
-    this.slideObserver = new SlideObserver()
+    this.observer = new Observer()
     this.animation = new Animation()
 
     // Sizes resize event
