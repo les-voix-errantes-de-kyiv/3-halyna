@@ -26,6 +26,8 @@ export default class Animation extends EventEmitter{
     console.log('anim');
     this.camera.instance.position.z = this.camera.instance.position.z +  (-this.scrollY / 14);
     console.log(this.camera.instance.position.z);
+
+    
   }
 }
 

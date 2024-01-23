@@ -11,7 +11,10 @@ export default class World
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.objectsDistance = 4;
+        this.currentSlide = 1
+
         console.log(this.experience)
+        console.log(this.currentSlide)
 
         this.resources.on('ready', ()=> {
           // Setup
@@ -19,7 +22,6 @@ export default class World
           this.slide2 = new Slide(2, this.resources.items.slide2Texture, 26)
           this.slide3 = new Slide(3, this.resources.items.slide3Texture, 12)
           this.slide4 = new Slide(4, this.resources.items.slide4Texture, -2)
-          this.environment = new Environment()
         })
-    }
+      }
 }

@@ -8,6 +8,7 @@ import Resources from './Utils/Resources'
 import sources from './sources'
 import Animation from './Animation'
 import Scroll from './Utils/Scroll'
+import Observer from './Utils/Observer'
 
 
 let instance = null
@@ -35,6 +36,7 @@ export default class Experience{
     this.time = new Time()
     this.scroll = new Scroll()
     this.animation = new Animation()
+    this.observer = new Observer()
 
     // Sizes resize event
     this.sizes.on('resize', ()=>{

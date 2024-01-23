@@ -11,6 +11,7 @@ export default class Slide
         this.camera = this.experience.camera
         this.sections = []
         this.id = id
+        this.currentSection = 0
 
         this.setGeometry()
         this.setTextures(texture)
@@ -51,11 +52,10 @@ export default class Slide
     }
 
     getSection() {
-        const slideSections = document.querySelectorAll(`section[data-slide="${this.id}"]`)
+        const slideSections = document.querySelectorAll(`[data-slide="${this.id}"]`)
         
         if (slideSections) {
             this.sections.push(slideSections)
-            console.log(this.sections)
         }
     }
 }
