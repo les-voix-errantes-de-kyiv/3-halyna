@@ -7,27 +7,23 @@ export default class Animation extends EventEmitter{
     super()
 
     this.experience = new Experience();
-    this.camera = this.experience.camera;
+    this.camera = this.experience.camera.instance
     this.scrollY = window.scrollY;
     this.sizes = this.experience.sizes;
     this.objectsDistance = this.experience.world.objectsDistance;
-
-    console.log(this.objectsDistance);
+    // this.observer = this.experience.observer
     
+    // console.log(this.experience.observer)
+    // this.observer.on('cameraMove', ()=> {
+    //   console.log('yup');
+    // })
+
     // Scroll event
-    window.addEventListener('scroll', ()=>{
-      // console.log(this.scrollY);
-      this.scrollY = window.scrollY;
-      this.animateCamera();
-    })
-
   }
-  animateCamera () {
-    console.log('anim');
-    this.camera.instance.position.z = this.camera.instance.position.z +  (-this.scrollY / 14);
-    console.log(this.camera.instance.position.z);
 
-    
+  cameraMove () {
+    // this.camera.instance.position.z = this.camera.instance.position.z +  (-this.scrollY / 14);
+    gsap.to(this.camera.position, {z: 39, duration: 2, ease: 'circ.out'})
   }
 }
 

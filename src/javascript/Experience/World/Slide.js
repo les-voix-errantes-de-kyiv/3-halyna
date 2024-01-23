@@ -11,13 +11,14 @@ export default class Slide
         this.camera = this.experience.camera
         this.sections = []
         this.id = id
-        this.currentSection = 0
+        this.currentSection = 1
+        this.sections
 
         this.setGeometry()
         this.setTextures(texture)
         this.setMaterial()
         this.setMesh(posZ)
-        this.getSection()
+        this.getSections()
     }
 
     setGeometry()
@@ -51,11 +52,11 @@ export default class Slide
         this.scene.add(this.mesh)
     }
 
-    getSection() {
-        const slideSections = document.querySelectorAll(`[data-slide="${this.id}"]`)
-        
+    getSections() {
+        const slideSections = document.querySelectorAll(`[data-slide="${this.id}"] > section`)
+
         if (slideSections) {
-            this.sections.push(slideSections)
+            this.sections = slideSections;
         }
     }
 }
