@@ -3,111 +3,95 @@ import Experience from '../Experience'
 import World from '../World/World'
 import EventEmitter from './EventEmitter.js'
 
-
 export default class Observer extends EventEmitter {
-    constructor(){
-        super()
+    constructor() {
+        super();
+
         // Setup
-        this.experience = new Experience()
-        this.resources = this.experience.resources
-        this.animation = new Animation()
-        this.world = new World()
+        this.experience = new Experience();
+        this.resources = this.experience.resources;
+        this.animation = new Animation();
+        this.currentSlideId = this.experience.world.currentSlide
         this.previousScroll = 0;
-        this.direction
+        this.direction = 'down'; // Set a default direction
 
-        this.resources.on('ready', ()=> {
-          // Slide
-          this.slides = this.experience.world.slides
-          this.currentSlideId = this.experience.world.currentSlide
-          this.nextSlide = this.slides[(this.experience.world.currentSlide + 1) - 1]
-          const slide = `slide${this.currentSlideId}`
-
-            this.slideObserver = new IntersectionObserver(this.slideCallback.bind(this), { threshold: 0.99 });
-            this.slideObserver.observe(this.nextSlide);
-
-            // Section
-
-            this.sections = this.experience.world[slide].sections
-            this.currentSectionId = this.experience.world[slide].currentSection
-            this.nextSectionId = this.currentSectionId + 1
-            this.currentSection = this.sections[this.currentSectionId - 1]
-            this.nextSection = this.sections[this.nextSectionId - 1]
-            this.nextSectionAttr = this.nextSection.getAttribute('data-animation')
-
-            this.sectionObserver = new IntersectionObserver(this.sectionCallback.bind(this), { threshold: 0.5 });
-            this.sectionObserver.observe(this.nextSection);
+        this.resources.on('ready', () => {
+            this.setupSlideObserver();
+            this.setupSectionObserver();
         });
 
         window.addEventListener('scroll', this.getScrollDirection.bind(this));
     }
 
+    setupSlideObserver() {
+      this.slideObserver = new IntersectionObserver(this.slideCallback.bind(this), { threshold: 0.99 });
+
+      // Observer la première diapositive
+      const currentSlideSections = this.experience.world[`slide${this.currentSlideId}`].sections;
+      currentSlideSections.forEach(section => {
+          this.slideObserver.observe(section);
+      });
+  }
+
+    setupSectionObserver() {
+        this.sectionObserver = new IntersectionObserver(this.sectionCallback.bind(this), { threshold: 0.5 });
+    }
+
     getScrollDirection() {
-      const currentScroll = window.scrollY;
-      if (currentScroll > this.previousScroll) {
-         this.direction = 'down'
-      } else {
-          this.direction = 'up'
-      }
-      this.previousScroll = currentScroll;
+        const currentScroll = window.scrollY;
+        if (currentScroll > this.previousScroll) {
+            this.direction = 'down';
+        } else {
+            this.direction = 'up';
+        }
+        this.previousScroll = currentScroll;
     }
 
-    slideCallback (entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              switch(this.direction){
-                case 'down':
-                  this.currentSlideId++
-                  console.log("slide actuelle : " + this.currentSlideId);
-                  if(this.slides[(this.currentSlideId + 1) - 1]){
-                    this.slideObserver.observe(this.slides[(this.currentSlideId + 1) - 1]);
-                  }
-                break
-                case 'up':
-                  this.currentSlideId--
-                  console.log("slide actuelle :  " +  this.currentSlideId);
-                  if(this.slides[(this.currentSlideId - 1) - 1]){
-                      this.slideObserver.observe(this.slides[(this.currentSlideId - 1) - 1]);
-                  }
-                break
-              }
-            }
-        });
-    }
-
-    sectionCallback (entries, observer) {
+    slideCallback(entries, observer) {
       entries.forEach(entry => {
           if (entry.isIntersecting) {
+              // Handle slide change when scrolling down or up
+              switch (this.direction) {
+                  case 'down':
+                      // Update currentSlideId for the next slide
+                      this.currentSlideId++;
+                      break;
+                  case 'up':
+                      // Update currentSlideId for the previous slide, ensuring it doesn't go below 1
+                      this.currentSlideId = Math.max(1, this.currentSlideId - 1);
+                      break;
+              }
 
-            switch(this.nextSectionAttr){
-              case "cameraMove":
-                this.animation.cameraMove()
-              break
-              case "translate":
-                this.animation.translate()
-              break
-            }
-
-            // switch(this.direction){
-            //   case 'down':
-            //     this.currentSectionId++
-            //     if(this.sections[(this.currentSectionId + 1) - 1]){
-            //       console.log("section suivante : " + this.nextSectionId);
-            //       this.sectionObserver.observe(this.sections[(this.currentSectionId + 1) - 1]);
-            //       // this.currentSectionId = this.nextSectionId
-            //       // this.nextSection = this.sections[this.nextSectionId - 1]
-            //     }
-            //   break
-            //   case 'up':
-            //     this.currentSectionId--
-            //     if(this.sections[(this.currentSectionId - 1) - 1]){
-            //       console.log("section précédente : " + this.nextSectionId);
-            //       this.sectionObserver.observe(this.sections[(this.currentSectionId - 1) - 1]);
-            //       // this.currentSectionId = this.nextSectionId
-            //       // this.nextSection = this.sections[this.nextSectionId - 1]
-            //     }
-            //   break
-            // }
+              // Observer les sections de la nouvelle diapositive
+              const currentSlideSections = this.experience.world[`slide${this.currentSlideId}`].sections;
+              currentSlideSections.forEach(section => {
+                  this.sectionObserver.observe(section);
+              });
           }
       });
   }
+
+
+    sectionCallback(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const currentSection = entry.target;
+                const animationType = currentSection.getAttribute('data-animation');
+                console.log(currentSection);
+                console.log(animationType);
+
+                // Perform animation based on the data-animation attribute
+                switch (animationType) {
+                    case 'cameraMove':
+                      console.log("camera move");
+                        this.animation.cameraMove();
+                        break;
+                    case 'translate':
+                        this.animation.translate(this.currentSlideId);
+                        break;
+                    // Add more cases for other animation types as needed
+                }
+            }
+        });
+    }
 }

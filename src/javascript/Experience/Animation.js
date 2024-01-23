@@ -11,19 +11,14 @@ export default class Animation extends EventEmitter{
     this.scrollY = window.scrollY;
     this.sizes = this.experience.sizes;
     this.objectsDistance = this.experience.world.objectsDistance;
-    // this.observer = this.experience.observer
-    
-    // console.log(this.experience.observer)
-    // this.observer.on('cameraMove', ()=> {
-    //   console.log('yup');
-    // })
-
-    // Scroll event
   }
 
   cameraMove () {
-    // this.camera.instance.position.z = this.camera.instance.position.z +  (-this.scrollY / 14);
     gsap.to(this.camera.position, {z: 39, duration: 2, ease: 'circ.out'})
   }
-}
 
+  translate(slideId){
+    const slideElt = this.experience.world[`slide${slideId}`].mesh
+    gsap.to(slideElt.position, {x: 5, duration: 2, ease: 'circ.out'})
+  }
+}
