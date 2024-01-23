@@ -7,6 +7,7 @@ import World from './World/World'
 import Resources from './Utils/Resources'
 import sources from './sources'
 import Animation from './Animation'
+import Scroll from './Utils/Scroll'
 
 
 let instance = null
@@ -32,7 +33,8 @@ export default class Experience{
     this.renderer = new Renderer()
     this.world = new World()
     this.time = new Time()
-    this.animation= new Animation()
+    this.animation = new Animation()
+    this.scroll = new Scroll()
 
     // Sizes resize event
     this.sizes.on('resize', ()=>{
