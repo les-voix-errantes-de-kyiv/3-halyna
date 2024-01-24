@@ -29,15 +29,15 @@ export default class Animation extends EventEmitter{
     });
   }
 
-  revealMessages() {
+  revealMessages(messageBox) {
     gsap.from(".message", {
       scrollTrigger: {
-        trigger: ".messages",
+        trigger: messageBox,
         pin: true,
         markers: true,
-        scrub: 2,
+        scrub: 1,
         start: "bottom bottom",
-        end: "+=200 center"
+        end: "+=150 center"
       },
       opacity: 0,
       y: 100,

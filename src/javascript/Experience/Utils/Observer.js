@@ -31,8 +31,14 @@ export default class Observer extends EventEmitter {
             const sections = slide.querySelectorAll('section');
 
             sections.forEach(section => {
-                const animation = section.getAttribute('data-animation');
-                this.sectionObserver(section, animation);
+                if (section.classList.contains('section-messages')) {
+                    const messageBox = section.querySelector('.messages');
+                    this.animation.revealMessages(messageBox);
+                }
+                else {
+                    const animation = section.getAttribute('data-animation');
+                    this.sectionObserver(section, animation);
+                }
             });
         });
     }
@@ -55,9 +61,6 @@ export default class Observer extends EventEmitter {
                         this.posZ = section.getAttribute('data-posZCamera')
                         this.posY = section.getAttribute('data-posYCamera')
                         this.animation.cameraMove(section, this.posY, this.posZ);
-                    } 
-                    else if (section.classList.contains('section-messages')) {
-                        this.animation.revealMessages();
                     }
                 }
             });
