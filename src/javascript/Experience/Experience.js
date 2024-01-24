@@ -34,7 +34,7 @@ export default class Experience{
     this.world = new World()
     this.time = new Time()
     this.scroll = new Scroll()
-    // this.observer = new Observer()
+    this.observer = new Observer()
     this.animation = new Animation()
 
     // Sizes resize event

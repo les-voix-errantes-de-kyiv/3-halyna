@@ -27,27 +27,13 @@ export default class Scroll {
 
         if (animationType === 'translate') {
           const slideElt = this.experience.world[`slide${slideId}`].mesh.position
-          console.log(slideId);
           gsap.to(slideElt, {
             x: -10,
             scrollTrigger: {
               trigger: section,
               start: 'top center',
               end: 'bottom center',
-              scrub: true,
-              // markers: true
-            },
-          });
-        } else if (animationType === 'cameraMove') {
-          let posZ = section.getAttribute('data-posCamera')
-          console.log(posZ);
-          gsap.to(this.camera.position, {
-            z: 12,
-            scrollTrigger: {
-              trigger: section,
-              start: 'top center',
-              end: 'bottom center',
-              scrub: true,
+              scrub: true
             },
           });
         }

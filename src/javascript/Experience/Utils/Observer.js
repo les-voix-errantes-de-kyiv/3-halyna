@@ -2,6 +2,8 @@ import Animation from '../Animation'
 import Experience from '../Experience'
 import World from '../World/World'
 import EventEmitter from './EventEmitter.js'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default class Observer extends EventEmitter {
     constructor() {
@@ -16,7 +18,6 @@ export default class Observer extends EventEmitter {
         this.direction = 'down'; // Set a default direction
 
         this.resources.on('ready', () => {
-            this.setupSlideObserver();
             this.setupSectionObserver();
         });
 
@@ -24,7 +25,16 @@ export default class Observer extends EventEmitter {
     }
 
     setupSectionObserver() {
-        this.sectionObserver = new IntersectionObserver(this.sectionCallback.bind(this), { threshold: 0.5 });
+        this.slides = document.querySelectorAll('.slide');
+        
+        this.slides.forEach(slide => {
+            const sections = slide.querySelectorAll('section');
+        
+            sections.forEach(section => {
+                const animation = section.getAttribute('data-animation');
+                this.sectionObserver(section, animation);
+            });
+        });
     }
 
     getScrollDirection() {
@@ -37,22 +47,17 @@ export default class Observer extends EventEmitter {
         this.previousScroll = currentScroll;
     }
 
-    sectionCallback(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const currentSection = entry.target;
-                const animationType = currentSection.getAttribute('data-animation');
-                console.log(currentSection);
-                console.log(animationType);
-
-                // Perform animation based on the data-animation attribute
-                switch (animationType) {
-                    case 'cameraMove':
-                      console.log("camera move");
-                        this.animation.cameraMove();
-                    break;
+    sectionObserver(section, animation) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (animation == "cameraMove") {
+                        this.posZ = section.getAttribute('data-posCamera')
+                        this.animation.cameraMove(section, this.posZ);
+                    }
                 }
-            }
+            });
         });
+        observer.observe(section);
     }
 }
