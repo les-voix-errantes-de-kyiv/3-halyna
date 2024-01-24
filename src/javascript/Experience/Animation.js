@@ -46,7 +46,26 @@ export default class Animation extends EventEmitter{
         amount: 1
       }
     });
+  }
 
+  revealTitle(slide) {
+    
+  }
+
+  displayTitle(slide) {
+    this.title = slide.querySelector('hgroup');
+    this.trigger = slide.querySelector('[data-animation="title"]')
+    console.log(this.trigger)
+    gsap.to(this.title, {
+      opacity: 1,
+      scrollTrigger: {
+        trigger: this.trigger,
+        start: 'top center',
+        end: 'bottom center',
+        ease: "circ.out",
+        scrub: true,
+      },
+    });
   }
 
   // translate(slideId){

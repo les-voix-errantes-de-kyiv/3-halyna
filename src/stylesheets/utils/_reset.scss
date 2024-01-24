@@ -16,8 +16,11 @@ html {
 // .slide{
 //   display: none;
 // }
+main {
+  position: relative;
+  z-index: 9;
+}
 section {
   height: 100vh;
-  position: relative;
   z-index: 9;
 }

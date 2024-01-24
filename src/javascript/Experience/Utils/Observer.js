@@ -28,6 +28,8 @@ export default class Observer extends EventEmitter {
         this.slides = document.querySelectorAll('.slide');
 
         this.slides.forEach(slide => {
+            this.slideObserver(slide);
+
             const sections = slide.querySelectorAll('section');
 
             sections.forEach(section => {
@@ -66,5 +68,17 @@ export default class Observer extends EventEmitter {
             });
         });
         observer.observe(section);
+    }
+
+    slideObserver (slide) {
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animation.displayTitle(slide);
+                }
+            });
+        });
+        observer.observe(slide);
     }
 }
