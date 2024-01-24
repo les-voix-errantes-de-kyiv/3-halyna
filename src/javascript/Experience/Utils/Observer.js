@@ -31,7 +31,7 @@ export default class Observer extends EventEmitter {
       currentSlideSections.forEach(section => {
           this.slideObserver.observe(section);
       });
-  }
+    }
 
     setupSectionObserver() {
         this.sectionObserver = new IntersectionObserver(this.sectionCallback.bind(this), { threshold: 0.5 });
@@ -69,8 +69,7 @@ export default class Observer extends EventEmitter {
               });
           }
       });
-  }
-
+    }
 
     sectionCallback(entries, observer) {
         entries.forEach(entry => {

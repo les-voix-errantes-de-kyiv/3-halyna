@@ -9,7 +9,6 @@ export default class Scroll {
     this.experience = new Experience();
     this.resources = this.experience.resources
     this.camera = this.experience.camera.instance
-
     // Setup
     this.resources.on('ready', () => {
       this.setupScrollAnimations();
@@ -30,7 +29,7 @@ export default class Scroll {
           const slideElt = this.experience.world[`slide${slideId}`].mesh.position
           console.log(slideId);
           gsap.to(slideElt, {
-            x: 11,
+            x: -10,
             scrollTrigger: {
               trigger: section,
               start: 'top center',
@@ -40,6 +39,8 @@ export default class Scroll {
             },
           });
         } else if (animationType === 'cameraMove') {
+          let posZ = section.getAttribute('data-posCamera')
+          console.log(posZ);
           gsap.to(this.camera.position, {
             z: 12,
             scrollTrigger: {
