@@ -8,12 +8,14 @@ html, body{
   position: relative;
   font-family: 'Ubuntu', sans-serif;
   color: white;
-
 }
 html {
-  background: #1e1a20;
+  background: rgb(116,214,245);
+  background: linear-gradient(0deg, rgba(116,214,245,1) 0%, rgba(116,156,245,1) 100%);
 }
-
+// .slide{
+//   display: none;
+// }
 section {
   height: 100vh;
   position: relative;

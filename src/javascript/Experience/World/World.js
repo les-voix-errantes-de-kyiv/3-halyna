@@ -18,10 +18,10 @@ export default class World
 
         this.resources.on('ready', ()=> {
           // Setup
-          this.slide1 = new Slide(1, this.resources.items.slide1Texture, 40)
-          this.slide2 = new Slide(2, this.resources.items.slide2Texture, 26)
-          this.slide3 = new Slide(3, this.resources.items.slide3Texture, 12)
-          this.slide4 = new Slide(4, this.resources.items.slide4Texture, -2)
+          this.slide1 = new Slide(1, this.resources.items.slide1Texture, 4, 2.5, 40)
+          this.slide2 = new Slide(2, this.resources.items.slide2Texture, 13.3, 3, 26)
+          this.slide3 = new Slide(3, this.resources.items.slide3Texture, 6, 3.9, 12)
+          this.slide4 = new Slide(4, this.resources.items.slide4Texture, 1.6, 14, -2)
           this.environment = new Environment()
         })
 

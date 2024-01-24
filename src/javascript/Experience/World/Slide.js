@@ -3,7 +3,7 @@ import Experience from '../Experience.js'
 
 export default class Slide
 {
-    constructor(id, texture, posZ)
+    constructor(id, texture, posX, posY, posZ)
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
@@ -17,13 +17,13 @@ export default class Slide
         this.setGeometry()
         this.setTextures(texture)
         this.setMaterial()
-        this.setMesh(posZ)
+        this.setMesh(posX, posY, posZ)
         this.getSections()
     }
 
     setGeometry()
     {
-        this.geometry = new THREE.PlaneGeometry(9, 12.1)
+        this.geometry = new THREE.PlaneGeometry(30, 20)
     }
 
     setTextures(texture)
@@ -43,11 +43,12 @@ export default class Slide
         })
     }
 
-    setMesh(posZ)
+    setMesh(posX, posY, posZ)
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
-        this.mesh.position.set(0, 0, posZ)
-        this.mesh.lookAt(this.camera.instance.position)
+        this.mesh.position.set(posX, posY, posZ)
+        this.mesh.scale.set(1.5, 1.5, 1.5)
+        // this.mesh.lookAt(this.camera.instance.position)
         this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
     }

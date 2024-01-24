@@ -26,10 +26,10 @@ export default class Observer extends EventEmitter {
 
     setupSectionObserver() {
         this.slides = document.querySelectorAll('.slide');
-        
+
         this.slides.forEach(slide => {
             const sections = slide.querySelectorAll('section');
-        
+
             sections.forEach(section => {
                 const animation = section.getAttribute('data-animation');
                 this.sectionObserver(section, animation);
@@ -52,8 +52,9 @@ export default class Observer extends EventEmitter {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     if (animation == "cameraMove") {
-                        this.posZ = section.getAttribute('data-posCamera')
-                        this.animation.cameraMove(section, this.posZ);
+                        this.posZ = section.getAttribute('data-posZCamera')
+                        this.posY = section.getAttribute('data-posYCamera')
+                        this.animation.cameraMove(section, this.posY, this.posZ);
                     }
                 }
             });

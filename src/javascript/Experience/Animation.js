@@ -15,13 +15,15 @@ export default class Animation extends EventEmitter{
     this.objectsDistance = this.experience.world.objectsDistance;
   }
 
-  cameraMove (section, posZ) {
+  cameraMove (section, posY, posZ) {
     gsap.to(this.camera.position, {
       z: posZ,
+      y: posY,
       scrollTrigger: {
         trigger: section,
         start: 'top center',
         end: 'bottom center',
+        ease: "circ.out",
         scrub: true,
       },
     });
