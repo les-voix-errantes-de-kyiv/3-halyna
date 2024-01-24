@@ -56,7 +56,7 @@ export default class Observer extends EventEmitter {
                         this.posY = section.getAttribute('data-posYCamera')
                         this.animation.cameraMove(section, this.posY, this.posZ);
                     } 
-                    else if  (section.classList.contains('slide-messages')) {
+                    else if (section.classList.contains('section-messages')) {
                         this.animation.revealMessages();
                     }
                 }
