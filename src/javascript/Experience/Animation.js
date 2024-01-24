@@ -29,6 +29,26 @@ export default class Animation extends EventEmitter{
     });
   }
 
+  revealMessages() {
+    gsap.from(".message", {
+      scrollTrigger: {
+        trigger: ".messages",
+        pin: true,
+        markers: true,
+        scrub: 2,
+        start: "bottom bottom",
+        end: "+=200 center"
+      },
+      opacity: 0,
+      y: 100,
+      ease: "circ.out",
+      stagger: {
+        amount: 1
+      }
+    });
+
+  }
+
   // translate(slideId){
   //   const slideElt = this.experience.world[`slide${slideId}`].mesh
   //   gsap.to(slideElt.position, {x: 5, duration: 2, ease: 'circ.out'})

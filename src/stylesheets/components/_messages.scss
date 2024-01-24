@@ -1,0 +1,15 @@
+.slide-messages {
+    .messages {
+        background-color: green;
+        overflow: hidden;
+        height: 40vh;
+    }
+    .message {
+        &.right {
+            background-color: red;
+        }
+        &.left {
+            background-color: orange;
+        }
+    }
+}
