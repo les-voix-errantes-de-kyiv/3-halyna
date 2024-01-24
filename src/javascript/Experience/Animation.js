@@ -54,22 +54,39 @@ export default class Animation extends EventEmitter{
 
   displayTitle(slide) {
     this.title = slide.querySelector('hgroup');
-    this.trigger = slide.querySelector('[data-animation="title"]')
-    console.log(this.trigger)
-    gsap.to(this.title, {
-      opacity: 1,
+    this.triggerStart = slide.querySelector('[data-title="start"]')
+    this.triggerEnd = slide.querySelector('[data-title="end"]')
+    console.log(this.triggerEnd)
+
+    const fadeInTimeline = gsap.timeline({
       scrollTrigger: {
-        trigger: this.trigger,
-        start: 'top center',
+        trigger: this.triggerStart,
+        start: 'top bottom',
         end: 'bottom center',
-        ease: "circ.out",
         scrub: true,
       },
     });
+  
+    fadeInTimeline.to(this.title, {
+      opacity: 1,
+      onStart: () => {
+        gsap.set(this.title, { opacity: 0 });
+      },
+    });
+  
+    if (this.triggerEnd) {
+      const fadeOutTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: this.triggerEnd,
+          start: 'top bottom',
+          end: 'bottom center',
+          scrub: true,
+        },
+      });
+  
+      fadeOutTimeline.to(this.title, {
+        opacity: 0,
+      });
+    }  
   }
-
-  // translate(slideId){
-  //   const slideElt = this.experience.world[`slide${slideId}`].mesh
-  //   gsap.to(slideElt.position, {x: 5, duration: 2, ease: 'circ.out'})
-  // }
 }
