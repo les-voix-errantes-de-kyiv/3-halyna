@@ -139,7 +139,9 @@ export default class Animation extends EventEmitter{
       stagger: 0.05,
       delay: 0.5,
       onStart: () => {
-        this.scrollingNumber(this.distanceText);
+        if (this.distanceText) {
+          this.scrollingNumber(this.distanceText);
+        }
       }
     });
     titleTl.from(this.dateTime, {

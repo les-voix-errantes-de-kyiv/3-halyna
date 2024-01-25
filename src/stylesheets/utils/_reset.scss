@@ -9,11 +9,8 @@ html, body{
   font-family: 'Ubuntu', sans-serif;
   color: white;
   overscroll-behavior-y: none;
-  @media screen and (min-width: 1024px) {
-      overflow: hidden;
-  }
 }
-html {
+body {
   background: rgb(186,193,208);
   background: linear-gradient(0deg, rgba(186,193,208,1) 0%, rgba(53,69,105,1) 100%);
 }
@@ -24,4 +21,31 @@ main {
 section {
   height: 100vh;
   z-index: 9;
+}
+
+@media screen and (min-width: 1024px) {
+  html {
+    background: black;
+  }
+  body {
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      background-color: black;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      width: calc((100% - 600px) / 2);
+      z-index: 99;
+    }
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+    }
+  }
 }

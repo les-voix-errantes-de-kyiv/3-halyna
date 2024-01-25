@@ -24,5 +24,14 @@
         + .message {
             margin-top: 15px;
         }
+        @media screen and (min-width: 1024px) {
+            max-width: 50%;
+            &.right {
+                margin-right: 40px;
+            }
+            &.left {
+                margin-left: 40px;
+            }
+        }
     }
 }
