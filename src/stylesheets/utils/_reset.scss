@@ -8,6 +8,7 @@ html, body{
   position: relative;
   font-family: 'Ubuntu', sans-serif;
   color: white;
+  overscroll-behavior-y: none;
 }
 html {
   background: rgb(186,193,208);
