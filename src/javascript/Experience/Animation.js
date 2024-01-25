@@ -2,8 +2,10 @@ import gsap from 'gsap';
 import EventEmitter from './Utils/EventEmitter'
 import Experience from "./Experience";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitType from 'split-type'
 
 gsap.registerPlugin(ScrollTrigger);
+
 export default class Animation extends EventEmitter{
   constructor(){
     super()
@@ -34,7 +36,6 @@ export default class Animation extends EventEmitter{
       scrollTrigger: {
         trigger: messageBox,
         pin: true,
-        markers: true,
         scrub: 1,
         start: "top 400",
         end: "top center"
@@ -51,7 +52,11 @@ export default class Animation extends EventEmitter{
 
   displayTitle(slide) {
     this.title = slide.querySelector('hgroup');
-    // this.distanceText = this.title.querySelector('.distance__value')
+    this.city = this.title.querySelector('h2');
+    this.distanceBox = this.title.querySelector('.distance');
+    this.distanceText = this.title.querySelector('.distance__value');
+    this.dateTime = this.title.querySelector('time');
+    
     this.triggerStart = slide.querySelector('[data-title="start"]')
     this.triggerEnd = slide.querySelector('[data-title="end"]')
 
@@ -67,9 +72,15 @@ export default class Animation extends EventEmitter{
     fadeInTimeline.to(this.title, {
       opacity: 1,
       onStart: () => {
-        this.distanceText = this.title.querySelector('.distance__value')
         gsap.set(this.title, { opacity: 0 });
-        this.scrollingNumber(this.distanceText)
+        
+        // setTimeout(() => {
+        //   this.scrollingNumber(this.distanceBox, this.distanceText);
+        // }, "3000");
+        
+        // setTimeout(() => {
+        //   this.displayDate(this.dateTime);
+        // }, "4000");
       },
     });
 
@@ -87,12 +98,43 @@ export default class Animation extends EventEmitter{
         opacity: 0,
       });
     }
+
+    const titleTl = gsap.timeline();
+
+    const splitCityName = new SplitType(this.city, {type: "chars"});
+
+    titleTl.from(splitCityName.chars, {
+      duration: 0.5, 
+      opacity: 0,
+      y: 30, 
+      autoAlpha: 0,
+      stagger: {
+        amount: 0.7,
+        from: "random"
+      }
+    });
+    titleTl.from(this.distanceBox, {
+      duration: 0.5, 
+      opacity: 0,
+      autoAlpha: 0,
+      stagger: 0.05,
+      delay: 0.5,
+      onStart: () => {
+        this.scrollingNumber(this.distanceText);
+      }
+    });
+    titleTl.from(this.dateTime, {
+      duration: 0.8, 
+      opacity: 0,
+      y: -30,
+    }, '-=0.5');
   }
 
   scrollingNumber(text){
     let numberFrom = text.getAttribute('data-from')
     const numberTo = text.getAttribute('data-to')
     text.innerText = numberFrom.toString()
+
     setInterval((scrollingNumber) => {
       if((numberFrom - numberTo) != 0){
         numberFrom++
@@ -100,4 +142,12 @@ export default class Animation extends EventEmitter{
       }
     }, 5);
   }
+
+  // displayDate(date) {
+
+    
+
+    
+
+  // }
 }
