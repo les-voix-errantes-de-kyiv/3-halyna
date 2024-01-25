@@ -51,6 +51,7 @@ export default class Animation extends EventEmitter{
 
   displayTitle(slide) {
     this.title = slide.querySelector('hgroup');
+    // this.distanceText = this.title.querySelector('.distance__value')
     this.triggerStart = slide.querySelector('[data-title="start"]')
     this.triggerEnd = slide.querySelector('[data-title="end"]')
 
@@ -62,14 +63,16 @@ export default class Animation extends EventEmitter{
         scrub: true,
       },
     });
-  
+
     fadeInTimeline.to(this.title, {
       opacity: 1,
       onStart: () => {
+        this.distanceText = this.title.querySelector('.distance__value')
         gsap.set(this.title, { opacity: 0 });
+        this.scrollingNumber(this.distanceText)
       },
     });
-  
+
     if (this.triggerEnd) {
       const fadeOutTimeline = gsap.timeline({
         scrollTrigger: {
@@ -79,10 +82,22 @@ export default class Animation extends EventEmitter{
           scrub: true,
         },
       });
-  
+
       fadeOutTimeline.to(this.title, {
         opacity: 0,
       });
-    }  
+    }
+  }
+
+  scrollingNumber(text){
+    let numberFrom = text.getAttribute('data-from')
+    const numberTo = text.getAttribute('data-to')
+    text.innerText = numberFrom.toString()
+    setInterval((scrollingNumber) => {
+      if((numberFrom - numberTo) != 0){
+        numberFrom++
+        text.innerText = numberFrom.toString()
+      }
+    }, 50);
   }
 }
