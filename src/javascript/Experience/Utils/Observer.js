@@ -58,11 +58,11 @@ export default class Observer extends EventEmitter {
                         this.posY = section.getAttribute('data-posYCamera')
                         this.animation.cameraMove(section, this.posY, this.posZ);
                     }
-                    if (section.classList.contains('section-messages')) {
-                        const messageBox = section.querySelector('.messages');
-                        const messages = messageBox.querySelectorAll('.message');
-                        this.animation.revealMessages(messageBox, messages);
-                    }
+                    // if (section.classList.contains('section-messages')) {
+                    //     const messageBox = section.querySelector('.messages');
+                    //     const messages = messageBox.querySelectorAll('.message');
+                    //     this.animation.revealMessages(messageBox, messages);
+                    // }
                 }
             });
         });
