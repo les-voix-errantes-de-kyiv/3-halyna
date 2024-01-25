@@ -29,39 +29,35 @@ export default class Animation extends EventEmitter{
     });
   }
 
-  revealMessages(messageBox) {
-    gsap.from(".message", {
+  revealMessages(messageBox, messages) {
+    gsap.from(messages, {
       scrollTrigger: {
         trigger: messageBox,
         pin: true,
         markers: true,
         scrub: 1,
-        start: "bottom bottom",
-        end: "+=150 center"
+        start: "top 400",
+        end: "top center"
       },
       opacity: 0,
       y: 100,
       ease: "circ.out",
+      duration: 3,
       stagger: {
         amount: 1
       }
     });
   }
 
-  revealTitle(slide) {
-    
-  }
-
   displayTitle(slide) {
     this.title = slide.querySelector('hgroup');
     this.triggerStart = slide.querySelector('[data-title="start"]')
     this.triggerEnd = slide.querySelector('[data-title="end"]')
-    console.log(this.triggerEnd)
 
     const fadeInTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: this.triggerStart,
-        start: 'top bottom',
+        start: '-=10 bottom',
         end: 'bottom center',
         scrub: true,
       },
