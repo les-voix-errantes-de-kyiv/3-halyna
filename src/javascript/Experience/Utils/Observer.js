@@ -26,6 +26,7 @@ export default class Observer extends EventEmitter {
 
     setupSectionObserver() {
         this.slides = document.querySelectorAll('.slide');
+        this.gradientLayer = document.querySelector('.gradient-bottom');
 
         this.slides.forEach(slide => {
             this.slideObserver(slide);
@@ -75,6 +76,10 @@ export default class Observer extends EventEmitter {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     this.animation.displayTitle(slide);
+                    if (!this.gradientLayer.classList.contains('active')) {
+                        this.animation.displayGradientLayer(this.gradientLayer);
+                        this.gradientLayer.classList.add('active');
+                    }
                 }
             });
         });

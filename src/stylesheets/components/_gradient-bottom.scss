@@ -1,8 +1,13 @@
 .gradient-bottom{
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.31) 40%, rgb(0, 0, 0) 70%);
   position: fixed;
+  opacity: 0;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 6rem;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.31) 40%, rgb(0, 0, 0) 70%);
+  pointer-events: none;
+  &.active {
+    opacity: 1
+  }
 }

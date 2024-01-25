@@ -162,11 +162,11 @@ export default class Animation extends EventEmitter{
     }, 5);
   }
 
-  // displayDate(date) {
-
-    
-
-    
-
-  // }
+  displayGradientLayer(element) {
+    gsap.from(element, {
+      duration: 0.8, 
+      opacity: 0,
+      y: 100,
+    });
+  }
 }
