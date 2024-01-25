@@ -4,7 +4,13 @@ hgroup {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
+    h2{
+      font-family: 'kufam-regular';
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
     time {
-        display: block;
+        display: inline-block;
     }
 }
