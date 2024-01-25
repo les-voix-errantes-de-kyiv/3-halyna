@@ -1,11 +1,25 @@
 hgroup {
     opacity: 0;
     position: fixed;
-    top: 5vh;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    
+    width: 100%;
+    &::before {
+        content: '';
+        width: 289px;
+        height: 130px;
+        background-image: url('/images/title-shadow.png');
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -25%;
+    }
+    > * {
+        position: relative;
+    }
     h2{
         font-family: 'kufam';
         font-size: 2rem;
