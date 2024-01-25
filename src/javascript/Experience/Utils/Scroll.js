@@ -33,7 +33,8 @@ export default class Scroll {
               trigger: section,
               start: 'top center',
               end: 'bottom center',
-              scrub: true
+              scrub: true, 
+              ease: 'circ.out'
             },
           });
         }
