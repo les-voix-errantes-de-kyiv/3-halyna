@@ -16,10 +16,11 @@
             margin-right: 20px;
         }
         &.left {
-            background-color: rgba(white, 0.8);
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            background-color: rgba(white, 0.7);
             border-bottom-left-radius: 0;
             margin-left: 20px;
-            -webkit-backdrop-filter: blur(2px);
         }
         + .message {
             margin-top: 15px;
