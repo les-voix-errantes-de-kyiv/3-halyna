@@ -1,8 +1,27 @@
+// Kufam
 @font-face {
-  font-family: "kufam-regular";
-  src: url('/fonts/Kufam/kufam-regular.ttf') format('truetype');
+  font-family: "kufam";
+  font-style: normal;
+  src: url('/fonts/Kufam/kufam-regular.ttf') format('truetype'),
+       url('/fonts/Kufam/kufam-regular.woff') format('truetype');
 }
 @font-face {
-  font-family: "kufam-regular-italic";
-  src: url('/fonts/Kufam/kufam-regular-italic.ttf') format('truetype');
+  font-family: "kufam";
+  font-style: italic;
+  src: url('/fonts/Kufam/kufam-regular-italic.ttf') format('truetype'),
+       url('/fonts/Kufam/kufam-regular-italic.woff') format('truetype');
+}
+
+// Lekton
+@font-face {
+  font-family: "lekton";
+  font-style: normal;
+  src: url('/fonts/Lekton/lekton-regular.ttf') format('truetype'),
+       url('/fonts/Lekton/lekton-regular.woff') format('truetype');
+}
+@font-face {
+  font-family: "lekton";
+  font-style: italic;
+  src: url('/fonts/Lekton/lekton-italic.ttf') format('truetype'),
+       url('/fonts/Lekton/lekton-italic.woff') format('truetype');
 }
