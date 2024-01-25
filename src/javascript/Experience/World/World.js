@@ -22,6 +22,11 @@ export default class World
           this.slide2 = new Slide(2, this.resources.items.slide2Texture, 13.3, 3, 26)
           this.slide3 = new Slide(3, this.resources.items.slide3Texture, 6, 3.9, 12)
           this.slide4 = new Slide(4, this.resources.items.slide4Texture, 1.6, 14, -2)
+          this.slide1 = new Slide(5, this.resources.items.slide5Texture, 1.6, 14, -2)
+          this.slide2 = new Slide(6, this.resources.items.slide6Texture, 1.6, 14, -2)
+          this.slide3 = new Slide(7, this.resources.items.slide7Texture, 1.6, 14, -2)
+          this.slide4 = new Slide(8, this.resources.items.slide8Texture, 1.6, 14, -2)
+          this.slide4 = new Slide(9, this.resources.items.slide9Texture, 1.6, 14, -2)
           this.environment = new Environment()
         })
 

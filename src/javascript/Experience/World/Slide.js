@@ -47,7 +47,7 @@ export default class Slide
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.mesh.position.set(posX, posY, posZ)
-        this.mesh.scale.set(1.5, 1.5, 1.5)
+        // this.mesh.scale.set(1.5, 1.5, 1.5)
         // this.mesh.lookAt(this.camera.instance.position)
         this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
