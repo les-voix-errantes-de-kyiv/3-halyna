@@ -98,6 +98,6 @@ export default class Animation extends EventEmitter{
         numberFrom++
         text.innerText = numberFrom.toString()
       }
-    }, 50);
+    }, 5);
   }
 }
