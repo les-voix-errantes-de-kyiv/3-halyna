@@ -1,14 +1,15 @@
 hgroup {
     opacity: 0;
     position: fixed;
-    top: 0;
+    top: 5vh;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    
     h2{
-      font-family: 'kufam';
-      font-size: 2rem;
-      text-transform: uppercase;
+        font-family: 'kufam';
+        font-size: 2rem;
+        text-transform: uppercase;
     }
     time {
         display: inline-block;
