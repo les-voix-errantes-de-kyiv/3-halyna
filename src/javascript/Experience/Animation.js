@@ -17,6 +17,7 @@ export default class Animation extends EventEmitter{
     this.objectsDistance = this.experience.world.objectsDistance;
 
     this.titleAnimation();
+    this.footerAnimation();
   }
 
   titleAnimation() {
@@ -42,6 +43,36 @@ export default class Animation extends EventEmitter{
       y: 0
     });
 
+  }
+
+  footerAnimation() {
+    this.footer = document.querySelector('footer');
+    this.footerText = this.footer.querySelectorAll('p');
+    
+    const splitText = new SplitType(this.footerText, {type: "chars"});
+
+    const animateFooter = () => {
+      gsap.from(splitText.chars, {
+          duration: 0.4,
+          opacity: 0,
+          y: 30,
+          delay: 2,
+          stagger: {
+            amount: 0.8
+          }
+      });
+      observer.disconnect();
+  };
+
+  const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              animateFooter();
+          }
+      });
+  });
+
+  observer.observe(this.footer);
   }
 
   cameraMove (section, posY, posZ) {

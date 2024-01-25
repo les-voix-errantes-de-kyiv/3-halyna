@@ -1,0 +1,16 @@
+footer {
+    align-items: center;
+    background: rgb(186,193,208);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,0) 100%);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    flex-direction: column;
+    p {
+        width: 100%;
+        + p {
+            margin-top: 2rem;
+        }
+    }
+}
