@@ -15,6 +15,33 @@ export default class Animation extends EventEmitter{
     this.scrollY = window.scrollY;
     this.sizes = this.experience.sizes;
     this.objectsDistance = this.experience.world.objectsDistance;
+
+    this.titleAnimation();
+  }
+
+  titleAnimation() {
+    this.title = document.querySelector('.home hgroup h1');
+    this.subtitle = document.querySelector('.home hgroup p');
+
+    const homeTl = gsap.timeline({ease: "circ.out"});
+    const splitTitle = new SplitType(this.title, {type: "chars"});
+
+    homeTl.set(this.subtitle, {y: -30, opacity: 0})
+    homeTl.from(splitTitle.chars, {
+      duration: 0.5,
+      opacity: 0,
+      y: 30,
+      stagger: {
+        amount: 0.7,
+        from: "random"
+      }
+    });
+    homeTl.to(this.subtitle, {
+      duration: 1, 
+      opacity: 1,
+      y: 0
+    });
+
   }
 
   cameraMove (section, posY, posZ) {
@@ -73,14 +100,6 @@ export default class Animation extends EventEmitter{
       opacity: 1,
       onStart: () => {
         gsap.set(this.title, { opacity: 0 });
-        
-        // setTimeout(() => {
-        //   this.scrollingNumber(this.distanceBox, this.distanceText);
-        // }, "3000");
-        
-        // setTimeout(() => {
-        //   this.displayDate(this.dateTime);
-        // }, "4000");
       },
     });
 
