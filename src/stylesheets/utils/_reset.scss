@@ -8,6 +8,7 @@ html, body{
   position: relative;
   font-family: 'Ubuntu', sans-serif;
   color: white;
+  overscroll-behavior-y: none;
   @media screen and (min-width: 1024px) {
       overflow: hidden;
   }
