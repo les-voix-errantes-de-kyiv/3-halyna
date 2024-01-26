@@ -28,7 +28,7 @@ export default class Scroll {
         if (animationType === 'translate') {
           const slideElt = this.experience.world[`slide${slideId}`].mesh.position
           gsap.to(slideElt, {
-            x: -9.7,
+            x: -7.7,
             scrollTrigger: {
               trigger: section,
               start: 'top center',
