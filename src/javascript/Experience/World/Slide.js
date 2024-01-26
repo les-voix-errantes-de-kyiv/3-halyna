@@ -38,7 +38,6 @@ export default class Slide
     {
         this.material = new THREE.MeshStandardMaterial({
             map: this.textures.color,
-            side: THREE.DoubleSide,
             transparent: true
         })
     }
@@ -48,7 +47,6 @@ export default class Slide
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.mesh.position.set(posX, posY, posZ)
         this.mesh.scale.set(1.85, 1.85, 1.85)
-        // this.mesh.lookAt(this.camera.instance.position)
         this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
     }
