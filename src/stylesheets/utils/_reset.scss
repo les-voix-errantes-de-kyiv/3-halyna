@@ -11,8 +11,8 @@ html, body{
   overscroll-behavior-y: none;
 }
 body {
-  background: rgb(186,193,208);
-  background: linear-gradient(0deg, rgba(186,193,208,1) 0%, rgba(53,69,105,1) 100%);
+  background: rgb(160,195,255);
+background: linear-gradient(-180deg, rgba(160,195,255,1) 0%, rgba(2,9,26,1) 70%);
   background-attachment: fixed;
   &.page {
     padding: 2rem 2rem 0;
