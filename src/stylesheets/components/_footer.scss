@@ -1,16 +1,32 @@
 footer {
-    align-items: center;
-    background: rgb(186,193,208);
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,0) 100%);
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 2rem;
-    flex-direction: column;
-    p {
-        width: 100%;
-        + p {
-            margin-top: 2rem;
+    a {
+        color: white;
+        font-family: 'kufam';
+        text-transform: uppercase;
+        font-weight: normal;
+        text-decoration: none;
+    }
+    &.footer-project {
+        align-items: center;
+        background: rgb(186,193,208);
+        background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,0) 100%);
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+        flex-direction: column;
+        p {
+            width: 100%;
+        }
+    }
+    &.footer-page {
+        background: rgba(2,0,36,1);
+        margin: 0 -2rem;
+        padding: 2rem;
+        a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 0.5px;
         }
     }
 }

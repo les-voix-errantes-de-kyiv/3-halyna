@@ -3,3 +3,12 @@ h1, h2 {
     text-transform: uppercase;
     font-weight: normal;
 }
+p {
+    + p {
+        margin-top: 2rem;
+    }
+}
+
+.page h2 {
+    margin-bottom: 1rem;
+}

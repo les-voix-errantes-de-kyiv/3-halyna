@@ -13,13 +13,24 @@ html, body{
 body {
   background: rgb(186,193,208);
   background: linear-gradient(0deg, rgba(186,193,208,1) 0%, rgba(53,69,105,1) 100%);
+  &.page {
+    padding: 2rem 2rem 0;
+    section + section {
+      margin-top: 4rem;
+    }
+    section:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+  &:not(.page) {
+    section {
+      height: 100vh;
+      z-index: 9;
+    }
+  }
 }
 main {
   position: relative;
-  z-index: 9;
-}
-section {
-  height: 100vh;
   z-index: 9;
 }
 
